@@ -1,26 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React , {Component}from 'react';
+import { fetchData } from "./api";
+import Navbar from "./components/Navbar";
+import PieChart1 from "./components/PieChart1";
+import Test from "./components/Test";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+class  App extends Component {
+  state = {
+    data :[]
+  }
+  async  componentDidMount(){
+    const response = await fetchData();
+    this.setState({data : response.data.result });
+    
+  }
+
+  render(){
+    return (
+      <div className="App">
+        <PieChart1 res={this.state.data}/>
+        
+        
+
+      </div>
+    );
+
+  }
+  
 }
 
 export default App;
