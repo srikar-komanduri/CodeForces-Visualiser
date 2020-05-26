@@ -1,3 +1,4 @@
+pie chart ::::::
 import React,{Component} from "react";
 import {Pie} from 'react-chartjs-2';
 
@@ -101,77 +102,81 @@ export default class PieChart1 extends Component{
     }
 
     render(){
-      this.set();
         return(
-            <div className="row">
-              <div className="col s12 m6 l6">
-                {}{}{}{}
-                    <div class="card z-depth-4 cardsize">
-                      <div class="card-content">
-                        <span class="card-title">Your Submissions</span>
-                        <p>
-                        <Pie
-                          data={state}
-                          options={{
-                              tooltips:{
-                                  bodyFontSize : 20
-                              },
-                              title:{
-                              display:false,
-                              text:'',
-                              fontSize:20
-                              },
-                              legend:{
-                              display:false,
-                              position:'right'
-                              }
-                          }}
-                        />
-                        </p>
-                      </div>
+            <div className="pies row">
+                <div className="pies col s1 m9">
+                    {this.set()}
+                    <div className="pie">
+                      <div>
+                        <div className="card">
+                          <div className="card-content z-depth-4 cc">
+                            <span className="card-title">Your Submissions</span>    
+                              <p>
+                                <Pie
+                                    data={state}
+                                    options={{
+                                        tooltips:{
+                                            bodyFontSize : 20
+                                        },
+                                        title:{
+                                        display:false,
+                                        text:'',
+                                        fontSize:20
+                                        },
+                                        legend:{
+                                        display:true,
+                                        position:'right'
+                                        }
+                                    }}
+                                />
+                            </p>
+                            </div>
+                            
+                        </div>
+                        </div>
                     </div>
-                {}{}{}{}{}{}
-              </div>
-              <div className="col s12 m6 l6">
-                {}{}{}{}
-                    <div class="card z-depth-4 cardsize">
-                      <div class="card-content">
-                        <span class="card-title">Your Languages</span>
-                        <p>
-                        <Pie
-                          data={state2}
-                          options={{
-                              tooltips:{
-                                  bodyFontSize : 20
-                              },
-                              title:{
-                              display:false,
-                              text:'',
-                              fontSize:20
-                              },
-                              legend:{
-                              display:false,
-                              position:'right'
-                              }
-                          }}
-                        />
-                        </p>
-                      </div>
+                    <hr/>
+                     
+                    <div className="pie">
+                        <div className="col s12 m9">
+                        <div className="card">
+                            <div className="card-content z-depth-4 cc">
+                            <span className="card-title">Your Languages</span>      
+                                <Pie
+                                    data={state2}
+                                    options={{
+                                        tooltips:{
+                                            bodyFontSize : 20
+                                        },
+                                        title:{
+                                        display:false,
+                                        text:'',
+                                        fontSize:20
+                                        },
+                                        legend:{
+                                        display:false,
+                                        position:'right'
+                                        }
+                                    }}
+                                />
+                            
+                            </div>
+                            
+                        </div>
+                        </div>
                     </div>
-                {}{}{}{}{}{}
-              
-              </div>
-
-            </div>    
+                           
+                    
+                </div>
                 
-            
+            </div>
         )
 
     }
     
 }
 
-
+========================================================
 
 
 
