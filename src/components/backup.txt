@@ -1,4 +1,352 @@
-pie chart ::::::
+******************************index.js****************************
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './App';
+import "./index.css"
+
+
+ReactDOM.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+  document.getElementById('root')
+);
+
+
+******************************app.js******************************
+import React , {Component}from 'react';
+import Navbar from "./components/Navbar";
+import PieChart1 from "./components/PieChart1";
+import Home from "./components/Home";
+
+
+
+class  App extends Component {
+  
+  render(){
+    return (
+      <div className="">
+        <Navbar/>
+        <div className="App">
+          <Home/>  
+          
+        </div>
+      </div>
+    );
+  }  
+}
+
+export default App;
+
+******************************home.js******************************
+import React , {Component} from "react";
+import axios from "axios";
+import Tables from "./Tables";
+import PieChart1 from "./PieChart1";
+import Levels from "./Levels";
+
+
+class Home extends Component {   
+    
+    state = {
+        handle : "",
+        url : "https://codeforces.com/api/user.status?handle=",
+        data : [],
+        url2 : "https://codeforces.com/api/user.info?handles=",
+        data2 : [],
+        url3 : "https://codeforces.com/api/user.rating?handle="
+
+    }
+    setHandle =(e) =>{
+        this.setState({handle : e.target.value})
+    }
+
+    sendHandle = async(e) =>{
+        let initialurl = this.state.url;
+        let initialurl2 = this.state.url2;
+        e.preventDefault()
+        document.getElementById("loader").style.display="flex"
+        const x = this.state.url + this.state.handle;
+        this.setState({url : x})
+        try{
+            const response = await axios.get(this.state.url+this.state.handle);
+            if(response !== undefined){
+                this.setState({data : response.data.result });
+                
+            }   
+            else
+                document.write("there is no such user.");
+            this.setState({url : initialurl })
+            var unhide = document.getElementById("hidden");
+            unhide.style.display = "block";
+
+        }
+        catch(error){
+            document.getElementById("in").innerHTML="Please Enter Valid Username";
+            document.getElementById("hidden").style.display="none";
+
+        }
+        try{
+            const response2 = await axios.get(this.state.url2+this.state.handle)
+            
+            //this.setState({url2 : initialurl2 })
+            const url2setter = this.state.url2 + this.state.handle;
+            this.setState({url2 : url2setter})
+            var unhide = document.getElementById("hidden");
+            unhide.style.display = "block";
+            let xxx=""
+            this.setState({handle : xxx})
+            this.setState({data2 : response2.data.result[0]});
+            this.setState({url2 : initialurl2 })
+            
+            
+        }
+        catch(error){
+            document.getElementById("in").innerHTML="Please Enter Valid Username";
+            document.getElementById("hidden").style.display="none";
+        }
+        document.getElementById("loader").style.display="none"
+        
+        
+        
+    }
+    
+
+    render(){ 
+        const {data,data2,handle} = this.state;
+        const Welcome="Welcome";
+        let username=data2.handle;
+        if(data2.firstName && data2.lastName)
+            username = data2.firstName+" "+data2.lastName;   
+        var date = new Date(1324339200000);
+        
+        //console.log(date.toDateString("MMM dd"));
+        return(
+            <div className="Home">
+                <form onSubmit={this.sendHandle}>
+                    <input type="text"  className="validate" data-error="wrong" data-success="right"
+                     placeholder="Enter your Codeforces handle"
+                     onChange={this.setHandle}/>
+                </form>
+    
+                <div id="loader" style= {{display:"none"}}>
+                <div class="preloader-wrapper big active">
+                    <div class="spinner-layer spinner-blue">
+                        <div class="circle-clipper left">
+                        <div class="circle"></div>
+                        </div><div class="gap-patch">
+                        <div class="circle"></div>
+                        </div><div class="circle-clipper right">
+                        <div class="circle"></div>
+                        </div>
+                    </div>
+
+                    <div class="spinner-layer spinner-red">
+                        <div class="circle-clipper left">
+                        <div class="circle"></div>
+                        </div><div class="gap-patch">
+                        <div class="circle"></div>
+                        </div><div class="circle-clipper right">
+                        <div class="circle"></div>
+                        </div>
+                    </div>
+
+                    <div class="spinner-layer spinner-yellow">
+                        <div class="circle-clipper left">
+                        <div class="circle"></div>
+                        </div><div class="gap-patch">
+                        <div class="circle"></div>
+                        </div><div class="circle-clipper right">
+                        <div class="circle"></div>
+                        </div>
+                    </div>
+
+                    <div class="spinner-layer spinner-green">
+                        <div class="circle-clipper left">
+                        <div class="circle"></div>
+                        </div><div class="gap-patch">
+                        <div class="circle"></div>
+                        </div><div class="circle-clipper right">
+                        <div class="circle"></div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                <p className="flow-text" style={{color : "red"}} id ="in"></p>
+                
+                <div id="hidden" style={{display:"none"}}>
+                    <p className="flow-text welcomecolor">
+                    {Welcome} {data2.rank} {username}</p>
+                    
+                    <img src = {data2.titlePhoto} className="fixedimage"/>
+                    <PieChart1 res={data}/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <Levels res={data}/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <Tables res={data} name={handle} data2={data2}/>
+                </div>
+
+                                    
+            </div>        
+        )
+    }
+}
+
+
+export default Home; 
+******************************levels.js******************************
+import React  from "react";
+import {Bar,Chart} from "react-chartjs-2"; 
+
+const Levels = (props) =>{
+    
+    // let levels =[800,900,1000,1100,1200,1300,1400,1500,1600,1700,1800,1900,2000,2100,
+    //     2200,2300,2400,2500,2600,2700,2800,2900,3000,3100,3200,3300,3400,3500]
+    //let leveldata = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+    let levels=[]
+    let leveldata=[]
+    for(let i=800;i<=3500;i=i+100){
+        levels.push(i);
+        leveldata.push(0);
+    }  
+    
+    let a=0,b=0,c=0,d=0,e=0,f=0,g=0,h=0,i=0,j=0;
+    for(let i=0;i<props.res.length;i++){
+        let x = props.res[i].problem.index
+        let y = props.res[i]
+        if(y.verdict==="OK"){
+            let ind = levels.indexOf(y.problem.rating)
+            leveldata[ind]+=1;
+        }
+        
+        if((x==="A" || x==="A1"|| x==="A2") && y.verdict==="OK"){
+            a+=1;
+        }
+        if((x==="B" || x==="B1"|| x==="B2") && y.verdict==="OK"){
+            b+=1;
+        }
+        if((x==="C" || x==="C1"|| x==="C2") && y.verdict==="OK"){
+            c+=1;
+        }
+        if((x==="D" || x==="D1"|| x==="D2") && y.verdict==="OK"){
+            d+=1;
+        }
+        if((x==="E" || x==="E1"|| x==="E2") && y.verdict==="OK"){
+            e+=1;
+        }
+        if((x==="F" || x==="F1"|| x==="F2") && y.verdict==="OK"){
+            f+=1;
+        }
+        if((x==="G" || x==="G1"|| x==="G2") && y.verdict==="OK"){
+            g+=1;
+        }
+        if((x==="H" || x==="H1"|| x==="H2") && y.verdict==="OK"){
+            h+=1;
+        }
+        if((x==="I" || x==="I1"|| x==="I2") && y.verdict==="OK"){
+            i+=1;
+        }
+        if((x==="J" || x==="J1"|| x==="J2") && y.verdict==="OK"){
+            j+=1;
+        }
+    }
+    let mydata = [a,b,c,d,e,f,g,h,i,j]
+       
+    
+    return(
+        <div>
+            <Bar
+        data={{
+          labels: ["A","B","C","D","E","F","G","H","I"],
+          datasets: [
+            {
+              label: 'Solved Problems',
+              backgroundColor: ['rgba(0, 0, 255, 0.5)', 'rgba(0, 255, 0, 0.5)',
+               'rgba(255, 0, 0, 0.5)','rgba(0, 134, 255, 0.5)','rgba(65, 154, 25, 0.5)',
+                'rgba(112, 255, 0, 0.5)','rgba(31, 43, 25, 0.5)','rgba(12,100, 5, 0.5)',
+                'rgba(123, 123, 123, 0.5)'],
+              data: mydata,
+            },
+          ],
+        }}
+        options = {{
+            scales:{
+                yAxes:[{
+                    ticks:{
+                        beginAtZero:true
+                    }
+                }]          
+        }}}
+      />
+
+       <Bar
+        data={{
+          labels: [800,900,1000,1100,1200,1300,1400,1500,1600,1700,1800,1900,2000,2100,
+            2200,2300,2400,2500,2600,2700,2800,2900,3000,3100,3200,3300,3400,3500],
+          datasets: [
+            {
+              label: "Solved Problems",
+              backgroundColor: ['rgba(0, 0, 255, 0.5)', 'rgba(0, 255, 0, 0.5)',
+               'rgba(255, 0, 0, 0.5)','rgba(0, 134, 255, 0.5)','rgba(65, 154, 25, 0.5)',
+                'rgba(112, 255, 0, 0.5)','rgba(31, 43, 25, 0.5)','rgba(12,100, 5, 0.5)',
+                'rgba(123, 123, 123, 0.5)','rgba(0, 0, 255, 0.5)', 'rgba(0, 255, 0, 0.5)',
+                'rgba(255, 0, 0, 0.5)','rgba(0, 134, 255, 0.5)','rgba(65, 154, 25, 0.5)',
+                 'rgba(112, 255, 0, 0.5)','rgba(31, 43, 25, 0.5)','rgba(12,100, 5, 0.5)',
+                 'rgba(123, 123, 123, 0.5)','rgba(0, 0, 255, 0.5)', 'rgba(0, 255, 0, 0.5)',
+                 'rgba(255, 0, 0, 0.5)','rgba(0, 134, 255, 0.5)','rgba(65, 154, 25, 0.5)',
+                  'rgba(112, 255, 0, 0.5)','rgba(31, 43, 25, 0.5)','rgba(12,100, 5, 0.5)',
+                  'rgba(123, 123, 123, 0.5)','rgba(13, 13, 13, 0.5)'],
+              data: leveldata,
+            },
+          ],
+        }}
+        options = {{
+            scales:{
+                yAxes:[{
+                    ticks:{
+                        beginAtZero:true
+                    }
+                }]          
+        }}}
+      />     
+            
+        </div>
+        
+    )
+}
+
+
+export default Levels;
+********************************navbar********************************
+import React from "react"
+import {Link,NavLink,BrowserRouter} from "react-router-dom";
+const Navbar = (props) =>{    
+    return(
+        <BrowserRouter>
+                <div>
+                <nav>
+                        <div>
+                        <a  className="brand-logo">Visualiser</a>
+                        <ul id="nav-mobile" className="right hide-on-med-and-down">
+                                <li><NavLink to="/Home">Home</NavLink></li>
+                                <li><NavLink to="/VRC">Virtual Rating Change</NavLink></li>
+                        </ul>
+                        </div>
+                </nav>
+                </div>
+        </BrowserRouter>
+    )
+}
+
+export default Navbar
+
+********************************pie chart********************************
+
+
 import React,{Component} from "react";
 import {Pie} from 'react-chartjs-2';
 
@@ -176,7 +524,208 @@ export default class PieChart1 extends Component{
     
 }
 
-========================================================
+********************************Tables********************************
+import React from "react"
+
+
+const Tables = (props) =>{  
+  let data = props.res 
+  const {data2} = props;
+  let contests = []
+  let attempts = []
+  let solved = []    
+  let totalattempts = []
+  let maxattempts = []
+  let maxattemptsval = 0
+  let acinoneattempt = []
+  let acin_onecount=0;
+  let now = new Date().getTime();
+  let lastonline = data2.lastOnlineTimeSeconds*1000;
+  let dateregistered = new Date(data2.registrationTimeSeconds*1000).toDateString();
+  for(let i=0;i<props.res.length;i++){
+      totalattempts.push(data[i].contestId+data[i].problem.index)
+      if(contests.indexOf(data[i].contestId)===-1 && data[i].author.participantType==="CONTESTANT"){
+          contests.push(data[i].contestId)
+      }
+
+      if(attempts.indexOf(data[i].contestId+data[i].problem.index)===-1){
+          if(data[i].verdict==="OK")
+              solved.push(data[i].contestId+data[i].problem.index)
+          attempts.push(data[i].contestId+data[i].problem.index)
+      }    
+  }
+
+  
+  for(let i=0;i<attempts.length;i++)
+      maxattempts.push(0);
+  for(let i=0;i<totalattempts.length;i++){
+      let ind = attempts.indexOf(totalattempts[i])
+      maxattempts[ind]+=1;
+  }
+  
+  for(let i=0;i<maxattempts.length;i++){
+      if (maxattempts[i] > maxattemptsval){
+          maxattemptsval = maxattempts[i];
+      }
+  }
+
+  for(let i=0;i<solved.length;i++)
+      acinoneattempt.push(0);
+  for(let i=0;i<data.length;i++){
+      let ind = solved.indexOf(data[i].contestId+data[i].problem.index)
+      if(ind>-1 && data[i].verdict!=="OK"){
+          acinoneattempt[ind]+=1;
+      }
+  }
+  
+  for(let i=0;i<acinoneattempt.length;i++){
+      if(acinoneattempt[i]===0)
+          acin_onecount+=1;
+  }
+
+  
+
+
+
+  return(
+      <div className="">
+          <table className="">
+      <thead>
+        <tr>
+          <th className="tabletitle">Few Interesting Facts About you</th>
+            <th></th>
+            
+        </tr>
+      </thead>
+
+      <tbody>
+      <tr>
+          <td><b>Registered </b></td>
+          <td>{dateregistered}</td>
+          
+        </tr>
+        <tr>
+          <td><b>Last online</b></td>
+          <td>{contests.length}</td>
+          
+        </tr>
+        <tr>
+          <td><b>Number of Contests partcipated </b></td>
+          <td>{contests.length}</td>
+          
+        </tr>
+        <tr>
+          <td><b>Total Unique Problems Tried</b></td>
+          <td>{attempts.length}</td>
+          
+        </tr>
+        <tr>
+          <td><b>Total Unique problems solved</b></td>
+          <td>{solved.length} ({Math.round((100)*(solved.length)/(attempts.length))}%)</td>
+        </tr>
+        <tr>
+          <td><b>Average Attemps per problem</b></td>
+          <td>{(data.length/solved.length).toFixed(2)}</td>
+        </tr>
+        <tr>
+          <td><b>Maximum Attemps for a problem</b></td>
+          <td>{maxattemptsval}</td>
+        </tr>
+        <tr>
+          <td><b>AC in one attempt</b></td>
+          <td>{acin_onecount}({Math.round((100*acin_onecount)/(solved.length))}%)</td>
+        </tr>
+
+      </tbody>
+    </table>            
+      </div>
+  )
+}
+
+
+export default  Tables
+*************************************index.css************************************
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  
+}
+.App{
+  
+  margin: 20px auto;
+  width: 90%;
+  max-width: 700px;
+  justify-content: space-evenly;
+  
+}
+
+.pies{
+  display: flex;
+  justify-content:center;
+  padding:5px;
+  
+}
+.cc{
+  height: 50vh;
+  width : 500px;
+  overflow-y: hidden;
+  overflow-x: auto;
+
+}
+
+.pie{
+margin:15px;
+}
+
+a:hover{
+  color:white;
+}
+.mytable{
+  margin:0 30px;
+  padding:5px;
+  width:100%;
+}
+
+.tabletitle{
+  color:blue;
+  font-size: 24px;
+}
+#loader {
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0,0,0,0.15);
+  /* margin: 0; */
+  position: fixed;
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+}
+.cardssize{
+  height : 100vh;
+  
+}
+
+.fixedimage{
+  width:32%;
+  display:block;
+  margin: auto;
+  max-width : 100%;
+  min-width : 300px;
+  margin-bottom: 16px;
+  border-radius: 4px;
+  justify-content: center;
+}
+
+.welcomecolor{
+  color: black;
+  font-weight: bolder;
+}
+***************************************Rating******************************
 
 
 

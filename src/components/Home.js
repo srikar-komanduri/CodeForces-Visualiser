@@ -3,25 +3,26 @@ import axios from "axios";
 import Tables from "./Tables";
 import PieChart1 from "./PieChart1";
 import Levels from "./Levels";
-import $ from  "jquery";
+
 
 class Home extends Component {   
-    componentDidMount(){
-    //     $(window).load(function() {      //Do the code in the {}s when the window has loaded 
-    //         $("#loader").fadeOut("fast");  //Fade out the #loader div
-    //     });
-    }
+    
     state = {
         handle : "",
         url : "https://codeforces.com/api/user.status?handle=",
-        data : []
+        data : [],
+        url2 : "https://codeforces.com/api/user.info?handles=",
+        data2 : [],
+        url3 : "https://codeforces.com/api/user.rating?handle="
+
     }
     setHandle =(e) =>{
         this.setState({handle : e.target.value})
     }
 
     sendHandle = async(e) =>{
-        let initialstate = this.state.url;
+        let initialurl = this.state.url;
+        let initialurl2 = this.state.url2;
         e.preventDefault()
         document.getElementById("loader").style.display="flex"
         const x = this.state.url + this.state.handle;
@@ -30,22 +31,37 @@ class Home extends Component {
             const response = await axios.get(this.state.url+this.state.handle);
             if(response !== undefined){
                 this.setState({data : response.data.result });
-                
             }   
-            else
-                document.write("there is no such user.");
-            let xx=""
-            this.setState({handle : xx})
-            this.setState({url : initialstate })
-            console.log(this.state)
+            
+            this.setState({url : initialurl })
             var unhide = document.getElementById("hidden");
             unhide.style.display = "block";
+            document.getElementById("in").style.display="none";
 
         }
         catch(error){
             document.getElementById("in").innerHTML="Please Enter Valid Username";
             document.getElementById("hidden").style.display="none";
 
+        }
+        try{
+            const response2 = await axios.get(this.state.url2+this.state.handle)
+            
+            //this.setState({url2 : initialurl2 })
+            const url2setter = this.state.url2 + this.state.handle;
+            this.setState({url2 : url2setter})
+            var unhide = document.getElementById("hidden");
+            unhide.style.display = "block";
+            let xxx=""
+            this.setState({handle : xxx})
+            this.setState({data2 : response2.data.result[0]});
+            this.setState({url2 : initialurl2 })
+            
+            
+        }
+        catch(error){
+            document.getElementById("in").innerHTML="Please Enter Valid Username";
+            document.getElementById("hidden").style.display="none";
         }
         document.getElementById("loader").style.display="none"
         
@@ -55,14 +71,22 @@ class Home extends Component {
     
 
     render(){ 
-               
+        const {data,data2,handle} = this.state;
+        const Welcome="Welcome";
+        let username=data2.handle;
+        if(data2.firstName && data2.lastName)
+            username = data2.firstName+" "+data2.lastName;   
+        //var date = new Date(1324339200000);
+        
+        //console.log(date.toDateString("MMM dd"));
         return(
-            <div className="Home">
+            <div className="Homeform">
                 <form onSubmit={this.sendHandle}>
                     <input type="text"  className="validate" data-error="wrong" data-success="right"
                      placeholder="Enter your Codeforces handle"
                      onChange={this.setHandle}/>
                 </form>
+    
                 <div id="loader" style= {{display:"none"}}>
                 <div class="preloader-wrapper big active">
                     <div class="spinner-layer spinner-blue">
@@ -109,15 +133,19 @@ class Home extends Component {
                 <p className="flow-text" style={{color : "red"}} id ="in"></p>
                 
                 <div id="hidden" style={{display:"none"}}>
-                    <PieChart1 res={this.state.data}/>
+                    <p className="flow-text welcomecolor">
+                    {Welcome} {data2.rank} {username}</p>
+                    
+                    <img src = {data2.titlePhoto} className="fixedimage"/>
+                    <PieChart1 res={data}/>
                     <br/>
                     <br/>
                     <br/>
-                    <Levels res={this.state.data}/>
+                    <Levels res={data}/>
                     <br/>
                     <br/>
                     <br/>
-                    <Tables res={this.state.data}/>
+                    <Tables res={data} name={handle} data2={data2}/>
                 </div>
 
                                     

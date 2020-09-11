@@ -2,6 +2,7 @@ import React , {Component}from 'react';
 import Navbar from "./components/Navbar";
 import PieChart1 from "./components/PieChart1";
 import Home from "./components/Home";
+import Choices from "./components/Choices";
 
 
 
@@ -12,7 +13,7 @@ class  App extends Component {
       <div className="">
         <Navbar/>
         <div className="App">
-          <Home/>  
+            
           
         </div>
       </div>

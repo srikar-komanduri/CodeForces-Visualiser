@@ -32,9 +32,6 @@ body {
 margin:15px;
 }
 
-a:hover{
-  color:white;
-}
 .mytable{
   margin:0 30px;
   padding:5px;
@@ -61,4 +58,51 @@ a:hover{
 .cardssize{
   height : 100vh;
   
+}
+
+.fixedimage{
+  width:32%;
+  display:block;
+  margin: auto;
+  max-width : 100%;
+  min-width : 300px;
+  margin-bottom: 16px;
+  border-radius: 4px;
+  justify-content: center;
+}
+
+.welcomecolor{
+  color: black;
+  font-weight: bolder;
+}
+
+.choice{
+  margin : auto;
+  justify-content: center;
+  padding:20px ;
+  
+
+}
+.choicecard{
+  height : 25vh;
+
+}
+.choicecontent{
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 20px;
+}
+.choicetitle{
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 32px;
+}
+
+
+.Homeform{
+  width:50%;
+  justify-content: center;
+  align-items: center;
+  margin : auto;
+  padding-top: 50px;
+
+
 }
