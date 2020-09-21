@@ -42,7 +42,7 @@ class  Choices extends Component{
                             <span className="card-title choicetitle"><b>How to use it?</b></span>
                             <p className="choicecontent">Just go to any tab in navbar and enter your respective website username. </p>
                             <p className="choicecontent">That's it. you can see your stats from that website.</p>
-                            <p className="choicecontent"> OR Just Select any website from Here to get started.</p>
+                            <p className="choicecontent"> OR Just Select any website given below here to get started.</p>
                         </div>
                         <div className="card-action">
                             <NavLink to="/Home" className="blue-text text-darken-2">Codeforces</NavLink>

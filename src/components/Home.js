@@ -81,9 +81,10 @@ class Home extends Component {
         //console.log(date.toDateString("MMM dd"));
         return(
             <div className="Homeform">
+                <h3>Enter your codeforces handle down below</h3>
                 <form onSubmit={this.sendHandle}>
                     <input type="text"  className="validate" data-error="wrong" data-success="right"
-                     placeholder="Enter your Codeforces handle"
+                     placeholder="Ex : srikar7777"
                      onChange={this.setHandle}/>
                 </form>
     
