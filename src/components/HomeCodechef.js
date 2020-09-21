@@ -14,6 +14,7 @@ class HomeCodechef extends Component {
 
     sendHandle =async(e) =>{
         e.preventDefault()
+        document.getElementById("loader").style.display="flex"
         const x = this.state.url + this.state.handle;
         this.setState({url : x})
         try{
@@ -28,19 +29,64 @@ class HomeCodechef extends Component {
         catch(err){
             console.log(err);
         }
+        document.getElementById("loader").style.display="none"
     }
 
 
     render(){
         const {data} = this.state;
         return(
-            <div>
+            <div className="Homeform">
                 <form onSubmit={this.sendHandle}>
                     <input type="text"  className="validate" data-error="wrong" data-success="right"
                      placeholder="Enter your Codechef handle"
                      onChange={this.setHandle}/>
                 </form>
-                <p id="name"></p>
+                <div id="loader" style= {{display:"none"}}>
+                    <div className="preloader-wrapper big active">
+                        <div className="spinner-layer spinner-blue">
+                            <div className="circle-clipper left">
+                            <div className="circle"></div>
+                            </div><div className="gap-patch">
+                            <div className="circle"></div>
+                            </div><div className="circle-clipper right">
+                            <div className="circle"></div>
+                            </div>
+                        </div>
+
+                        <div className="spinner-layer spinner-red">
+                            <div className="circle-clipper left">
+                            <div className="circle"></div>
+                            </div><div className="gap-patch">
+                            <div className="circle"></div>
+                            </div><div className="circle-clipper right">
+                            <div className="circle"></div>
+                            </div>
+                        </div>
+
+                        <div className="spinner-layer spinner-yellow">
+                            <div className="circle-clipper left">
+                            <div className="circle"></div>
+                            </div><div className="gap-patch">
+                            <div className="circle"></div>
+                            </div><div className="circle-clipper right">
+                            <div className="circle"></div>
+                            </div>
+                        </div>
+
+                        <div className="spinner-layer spinner-green">
+                            <div className="circle-clipper left">
+                            <div className="circle"></div>
+                            </div><div className="gap-patch">
+                            <div className="circle"></div>
+                            </div><div className="circle-clipper right">
+                            <div className="circle"></div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    <p className="flow-text" style={{color : "red"}} id ="in"></p>
+                    
             </div>
         )
     }

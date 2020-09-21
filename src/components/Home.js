@@ -56,7 +56,7 @@ class Home extends Component {
             this.setState({handle : xxx})
             this.setState({data2 : response2.data.result[0]});
             this.setState({url2 : initialurl2 })
-            
+            document.getElementById("in").style.display="none";
             
         }
         catch(error){
@@ -88,44 +88,44 @@ class Home extends Component {
                 </form>
     
                 <div id="loader" style= {{display:"none"}}>
-                <div class="preloader-wrapper big active">
-                    <div class="spinner-layer spinner-blue">
-                        <div class="circle-clipper left">
-                        <div class="circle"></div>
-                        </div><div class="gap-patch">
-                        <div class="circle"></div>
-                        </div><div class="circle-clipper right">
-                        <div class="circle"></div>
+                <div className="preloader-wrapper big active">
+                    <div className="spinner-layer spinner-blue">
+                        <div className="circle-clipper left">
+                        <div className="circle"></div>
+                        </div><div className="gap-patch">
+                        <div className="circle"></div>
+                        </div><div className="circle-clipper right">
+                        <div className="circle"></div>
                         </div>
                     </div>
 
-                    <div class="spinner-layer spinner-red">
-                        <div class="circle-clipper left">
-                        <div class="circle"></div>
-                        </div><div class="gap-patch">
-                        <div class="circle"></div>
-                        </div><div class="circle-clipper right">
-                        <div class="circle"></div>
+                    <div className="spinner-layer spinner-red">
+                        <div className="circle-clipper left">
+                        <div className="circle"></div>
+                        </div><div className="gap-patch">
+                        <div className="circle"></div>
+                        </div><div className="circle-clipper right">
+                        <div className="circle"></div>
                         </div>
                     </div>
 
-                    <div class="spinner-layer spinner-yellow">
-                        <div class="circle-clipper left">
-                        <div class="circle"></div>
-                        </div><div class="gap-patch">
-                        <div class="circle"></div>
-                        </div><div class="circle-clipper right">
-                        <div class="circle"></div>
+                    <div className="spinner-layer spinner-yellow">
+                        <div className="circle-clipper left">
+                        <div className="circle"></div>
+                        </div><div className="gap-patch">
+                        <div className="circle"></div>
+                        </div><div className="circle-clipper right">
+                        <div className="circle"></div>
                         </div>
                     </div>
 
-                    <div class="spinner-layer spinner-green">
-                        <div class="circle-clipper left">
-                        <div class="circle"></div>
-                        </div><div class="gap-patch">
-                        <div class="circle"></div>
-                        </div><div class="circle-clipper right">
-                        <div class="circle"></div>
+                    <div className="spinner-layer spinner-green">
+                        <div className="circle-clipper left">
+                        <div className="circle"></div>
+                        </div><div className="gap-patch">
+                        <div className="circle"></div>
+                        </div><div className="circle-clipper right">
+                        <div className="circle"></div>
                         </div>
                     </div>
                     </div>

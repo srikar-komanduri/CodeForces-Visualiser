@@ -3,7 +3,7 @@ import Navbar from "./components/Navbar";
 import PieChart1 from "./components/PieChart1";
 import Home from "./components/Home";
 import Choices from "./components/Choices";
-
+import Footer from "./components/Footer";
 
 
 class  App extends Component {
@@ -16,6 +16,7 @@ class  App extends Component {
             
           
         </div>
+        <Footer/>
       </div>
     );
   }  

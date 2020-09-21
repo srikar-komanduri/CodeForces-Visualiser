@@ -9,7 +9,7 @@ const Navbar = (props) =>{
     return(
         <BrowserRouter>
                 <div>
-                <nav>
+                <nav className="purple darken-1">
                         <div>
                         <a  className="brand-logo"><NavLink to="/">CP Visualiser</NavLink></a>
                         <ul id="nav-mobile" className="right hide-on-med-and-down">
