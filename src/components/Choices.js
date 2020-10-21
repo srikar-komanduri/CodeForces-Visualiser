@@ -15,69 +15,81 @@ class  Choices extends Component{
         return(
             <div>
                 <div className="parallax"></div>
-                <div className="container choice">
-                <div class="row">
-                    <div class="col s12">
-                    <ul class="tabs">
-                        <li class="tab col s3"><a href="#test1">what is cpv</a></li>
-                        <li class="tab col s3"><a class="active" href="#test2">how to use it?</a></li>
-                        <li class="tab col s3 "><a href="#test3">who is this for?</a></li>
-                        <li class="tab col s3"><a href="#test4">support us!</a></li>
-                    </ul>
-                    </div>
-                    <div id="test1" class="col s12">
-                        <div className="card">
-                            <div className="card-content choicecard">
-                                <span className="card-title choicetitle"><b>What is CP Visualiser?</b></span>
-                                <p className="choicecontent">The Best Destination to check your competitve programming statistics.</p>
-                                <p className="choicecontent yellow-text text-darken-4">NOTE: This website currently only supports 3 websites!</p>
-                            </div>
-                            
-                        </div>
-
-                    </div>
-                    <div id="test2" class="col s12">
-                    <div className="card">
-                        <div className="card-content choicecard">
-                            <span className="card-title choicetitle"><b>How to use it?</b></span>
-                            <p className="choicecontent">Just go to any tab in navbar and enter your respective website username. </p>
-                            <p className="choicecontent">That's it. you can see your stats from that website.</p>
-                            <p className="choicecontent"> OR Just Select any website given below here to get started.</p>
-                        </div>
-                        <div className="card-action">
-                            <NavLink to="/Home" className="blue-text text-darken-2">Codeforces</NavLink>
-                            <NavLink to="/atcoder" className="blue-text text-darken-2">AtCoder</NavLink>
-                            <NavLink to="/codechef" className="blue-text text-darken-2">CodeChef</NavLink>
-                            </div>
-                    </div>
-                    </div>
-                    <div id="test3" class="col s12">
-                    <div className="card">
-                        <div className="card-content choicecard">
-                            <span className="card-title choicetitle"><b>Who is this for?</b></span>
-                            <p className="choicecontent">if you have any account in any of the 3 programming websites, you can check your stats. </p>
-                            <p className="choicecontent">or you can view other's account's stats too!!</p>
-                        </div>
-                    </div>
-                    </div>
-                    <div id="test4" class="col s12">
-                    <div className="card">
-                        <div className="card-content choicecard">
-                            <span className="card-title choicetitle"><b>Support us!!</b></span>
-                            <p className="choicecontent">You can go to our github repository and sponsor us or you can star the repo.</p>
-                        </div>
-                        <div className="card-action">
-                            <a href="https://github.com/srikar7777" className="blue-text text-darken-2">Github Repo</a>
-                            
-                        </div>
-                    </div>
-                    </div>
-                </div>
-                </div>
-                <div className="parallax2"></div>
                 
+                <div class="container mt-3">
+                    <h2>Welcome To CP Visualiser</h2>
+                    <br/>
                     
-                
+                    <ul class="nav nav-tabs">
+                        <li class="nav-item">
+                        <a class="nav-link active" data-toggle="tab" href="#home">what is cpv</a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#menu2">how to use it?</a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#menu3">who is this for?</a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#menu4">support us!</a>
+                        </li>
+                    </ul>
+
+                    
+                    <div class="tab-content">
+                        <div id="home" class="container tab-pane active"><br/>
+                        <h3>Check Your stats with one click</h3>
+                        <p>The Best Destination to check your competitve programming statistics.</p>
+                        <img src="https://cdn.whatagraph.com/blog/parameter-vs-statistic.jpg" className="fixedimage2"/>
+                        
+                        </div>
+                        <div id="menu2" class="container tab-pane fade"><br/>
+                        <h3>How to use it?</h3>
+                        <p>Just go to any tab in navbar and enter your respective website username.</p>
+                        <p>That's it. you can see your stats from that website.</p>
+                        <p>OR Just Select any website given below here to get started.</p>
+                        <NavLink to="/Home">Codeforces</NavLink><br/>
+                        <NavLink to="/atcoder">AtCoder</NavLink><br/>
+                        <NavLink to="/codechef">CodeChef</NavLink><br/>
+                        </div>
+                        <div id="menu3" class="container tab-pane fade"><br/>
+                        <h3>Who is this for?</h3>
+                        <p>if you have any account in any of the 3 programming websites, you can check your stats.</p>
+                        <p>or you can view other's account's stats too!!</p>
+                        </div>
+                        <div id="menu4" class="container tab-pane fade"><br/>
+                        <h3>support us!</h3>
+                        <p>You can go to our github repository and sponsor us or you can star the repo.</p>
+                        <a href="https://github.com/srikar7777">Click here to go to github</a>
+                        </div>
+                    </div>
+                </div><br/> 
+                <div class="jumbotron">
+                    <h2>Have any suggestions?</h2>
+                    <p>Don't forget to leave feedback!!</p>
+                    <NavLink to="/feedback" className="blue-text text-darken-2">Click here to give feedback</NavLink>
+                </div>
+                <div class="container mt-3">
+                    <div class="card">
+                        <div class="card-body">
+                        
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <div className="parallax2"></div>
             </div>
         )
         

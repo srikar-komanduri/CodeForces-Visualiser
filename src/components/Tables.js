@@ -79,7 +79,7 @@ const Tables = (props) =>{
         </tr>
         <tr>
           <td><b>Last online</b></td>
-          <td>{contests.length}</td>
+          <td>Online now</td>
           
         </tr>
         <tr>
@@ -98,7 +98,7 @@ const Tables = (props) =>{
         </tr>
         <tr>
           <td><b>Average Attemps per problem</b></td>
-          <td>{(data.length/solved.length).toFixed(2)}</td>
+          <td>{((data.length)/solved.length).toFixed(2)}</td>
         </tr>
         <tr>
           <td><b>Maximum Attemps for a problem</b></td>
