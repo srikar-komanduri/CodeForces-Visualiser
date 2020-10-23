@@ -95,7 +95,7 @@ class Feedback extends Component {
                     
                     <div class="tab-content">
                         <div id="home" class="container tab-pane active"><br/>
-                        <h3>Fill this simple form</h3>
+                        <h3>Fill this simple form to report the bug</h3>
                         <div>
                         <form name="f1" onSubmit={this.required}>
                             <textarea  type="textarea" className="form-control mb-2 mr-sm-2" 
@@ -115,7 +115,7 @@ class Feedback extends Component {
                         
                         </div>
                         <div id="menu5" class="container tab-pane fade"><br/>
-                        <h3>Fill this simple form</h3>
+                        <h3>Fill this simple form to recommend the feature</h3>
                         <div>
                         <form name="f2" onSubmit={this.required2}>
                             <textarea  type="textarea" className="form-control mb-2 mr-sm-2" 
@@ -134,7 +134,7 @@ class Feedback extends Component {
                         
                         </div>
                         <div id="menu6" class="container tab-pane fade"><br/>
-                        <h3>Fill this simple form</h3>
+                        <h3>Fill this simple form to give your suggestion</h3>
                         <div>
                         <form name="f3" onSubmit={this.required3}>
                             <textarea  type="textarea" className="form-control mb-2 mr-sm-2" 

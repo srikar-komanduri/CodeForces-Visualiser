@@ -86,7 +86,7 @@ export default class PieChart3 extends Component{
             let ind = verdicts.indexOf(this.props.res[i].verdict);
             datasets[0].data[ind]+=1;
             if(i%10==0)
-                datasets[0].data[ind]+=3;
+                datasets[0].data[ind]+=1;
             let ind2 = lang.indexOf(this.props.res[i].programmingLanguage)
             
             datasets2[0].data[ind2]+=1;

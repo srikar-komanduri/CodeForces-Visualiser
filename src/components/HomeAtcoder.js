@@ -2,7 +2,7 @@ import React , {Component} from "react";
 import axios from "axios";
 import Tables3 from "./Tables3";
 import PieChart3 from "./PieChart3";
-import Levels from "./Levels";
+import Levels3 from "./Levels3";
 
 
 class HomeAtcoder extends Component {   
@@ -145,7 +145,7 @@ class HomeAtcoder extends Component {
                     <br/>
                     <br/>
                     <br/>
-                    <Levels res={data}/>
+                    <Levels3 res={data}/>
                     <br/>
                     <br/>
                     <br/>

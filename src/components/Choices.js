@@ -22,16 +22,16 @@ class  Choices extends Component{
                     
                     <ul class="nav nav-tabs">
                         <li class="nav-item">
-                        <a class="nav-link active" data-toggle="tab" href="#home">what is cpv</a>
+                        <a class="nav-link active" data-toggle="tab" href="#home">What is cpv</a>
                         </li>
                         <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#menu2">how to use it?</a>
+                        <a class="nav-link" data-toggle="tab" href="#menu2">How to use it?</a>
                         </li>
                         <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#menu3">who is this for?</a>
+                        <a class="nav-link" data-toggle="tab" href="#menu3">Who is this for?</a>
                         </li>
                         <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#menu4">support us!</a>
+                        <a class="nav-link" data-toggle="tab" href="#menu4">Support us!</a>
                         </li>
                     </ul>
 
@@ -58,7 +58,7 @@ class  Choices extends Component{
                         <p>or you can view other's account's stats too!!</p>
                         </div>
                         <div id="menu4" class="container tab-pane fade"><br/>
-                        <h3>support us!</h3>
+                        <h3>Support us!</h3>
                         <p>You can go to our github repository and sponsor us or you can star the repo.</p>
                         <a href="https://github.com/srikar7777">Click here to go to github</a>
                         </div>
@@ -69,26 +69,6 @@ class  Choices extends Component{
                     <p>Don't forget to leave feedback!!</p>
                     <NavLink to="/feedback" className="blue-text text-darken-2">Click here to give feedback</NavLink>
                 </div>
-                <div class="container mt-3">
-                    <div class="card">
-                        <div class="card-body">
-                        
-                        </div>
-                    </div>
-                </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
                 <div className="parallax2"></div>
             </div>
         )
