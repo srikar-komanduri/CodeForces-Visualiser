@@ -1,25 +1,15 @@
 import React , {Component} from "react";
-import Home from "./Home";
-import HomeAtcoder from "./HomeAtcoder";
-import HomeCodechef from "./HomeCodechef";
-import $ from 'jquery';
-import { Route, BrowserRouter,Link,NavLink } from 'react-router-dom'
+import {NavLink } from 'react-router-dom'
 
 
 class  Choices extends Component{
-    
-
-
-
     render(){
         return(
             <div>
-                <div className="parallax"></div>
-                
+                <div className="parallax"></div>                
                 <div class="container mt-3">
                     <h2>Welcome To CP Visualiser</h2>
-                    <br/>
-                    
+                    <br/>                    
                     <ul class="nav nav-tabs">
                         <li class="nav-item">
                         <a class="nav-link active" data-toggle="tab" href="#home">What is cpv</a>
@@ -49,8 +39,6 @@ class  Choices extends Component{
                         <p>That's it. you can see your stats from that website.</p>
                         <p>OR Just Select any website given below here to get started.</p>
                         <NavLink to="/Home">Codeforces</NavLink><br/>
-                        <NavLink to="/atcoder">AtCoder</NavLink><br/>
-                        <NavLink to="/codechef">CodeChef</NavLink><br/>
                         </div>
                         <div id="menu3" class="container tab-pane fade"><br/>
                         <h3>Who is this for?</h3>
@@ -86,16 +74,3 @@ class  Choices extends Component{
 
 
 export default Choices;
-
-
-
-
-
-
-
-
-
-
-
-
-

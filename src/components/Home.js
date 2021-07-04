@@ -76,9 +76,6 @@ class Home extends Component {
         let username=data2.handle;
         if(data2.firstName && data2.lastName)
             username = data2.firstName+" "+data2.lastName;   
-        //var date = new Date(1324339200000);
-        
-        //console.log(date.toDateString("MMM dd"));
         return(
             <div className="Homeform">
                 <h3>Enter your Codeforces handle down below</h3>

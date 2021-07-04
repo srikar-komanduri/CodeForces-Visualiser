@@ -1,9 +1,5 @@
 import React from "react"
-import Choices from "./Choices";
-import Home from "./Home";
-import HomeAtcoder from "./HomeAtcoder";
-import HomeCodechef from "./HomeCodechef";
-import { Route, BrowserRouter,Link,NavLink } from 'react-router-dom'
+
 
 const Footer = (props) =>{    
     return(
@@ -28,7 +24,7 @@ const Footer = (props) =>{
           </div>
           <div className="footer-copyright">
             <div className="container inline">
-            © 2020 Made by Komanduri Srikar , Jami Deepesh , Raghavan.  
+            © 2020 Made by Komanduri Srikar  
             <a href="#" className="fa fa-facebook"></a>
             &nbsp;	&nbsp;	&nbsp;
             <a href="#" className="fa fa-twitter"></a>
